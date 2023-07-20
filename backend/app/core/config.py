@@ -1,8 +1,7 @@
 from typing import List
 from pydantic import AnyHttpUrl
-from pydantic_settings import BaseSettings
 from decouple import config
-class Settings(BaseSettings):
+class Settings:
     API_V1_STR: str = "/api/v1"
     JWT_SECRET_KEY: str = config("JWT_SECRET_KEY", cast=str)
     JWT_REFRESH_SECRET_KEY: str = config("JWT_REFRESH_SECRET_KEY", cast=str)
