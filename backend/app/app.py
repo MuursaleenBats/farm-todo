@@ -1,11 +1,10 @@
 from fastapi import FastAPI
-from typing import List
-from pydantic import AnyHttpUrl
-from decouple import config
 from beanie import init_beanie
 from motor.motor_asyncio import AsyncIOMotorClient  
-from app.core.config import settings
 
+from app.core.config import settings
+from app.models.user_model import User
+from app.api.api_v1.router import router
 
 app = FastAPI(
     title=settings.PROJECT_NAME,
@@ -24,6 +23,8 @@ async def app_init():
     await init_beanie(
         database=db_client,
         document_models=[
-            
+            User       
         ]
     )
+
+app.include_router(router, prefix=settings.API_V1_STR)
