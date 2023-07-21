@@ -1,3 +1,4 @@
+from typing import Optional
 from datetime import datetime
 from beanie import Document, Indexed
 from uuid import UUID, uuid4
@@ -8,9 +9,9 @@ class User(Document):
     username: str = Indexed(str, unique=True)
     email: Indexed(EmailStr, unique=True)
     hashed_password: str
-    first_name: str
-    last_name: str
-    disabled: bool
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None
+    disabled: Optional[bool] = None
 
 
     def __repr__(self) -> str:
@@ -37,3 +38,4 @@ class User(Document):
     
     class Settings:
         name = "users"
+        use_revision = False
