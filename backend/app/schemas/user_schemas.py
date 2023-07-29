@@ -13,3 +13,8 @@ class UserOut(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
     disabled: Optional[bool]
+
+class UserUpdate(BaseModel):
+    email: Optional[EmailStr] = None
+    first_name: Optional[str] = None
+    last_name: Optional[str] = None

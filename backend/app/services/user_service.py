@@ -1,8 +1,9 @@
-from app.schemas.user_schemas import UserAuth
+from app.schemas.user_schemas import UserAuth, UserUpdate
 from app.models.user_model import User
 from app.core.security import get_password, verify_pass
 from typing import Optional
 from uuid import UUID
+import pymongo
 class UserService:
     @staticmethod
     async def create_user(user: UserAuth):
@@ -34,4 +35,13 @@ class UserService:
     @staticmethod
     async def get_user_by_id(id: UUID) -> Optional[User]:
         user = await User.find_one(User.user_id == id)
+        return user
+    
+    @staticmethod
+    async def update_user(id: UUID, data: UserUpdate) -> User:
+        user = await User.find_one(User.user_id == id)
+        if not user:
+            raise pymongo.errors.OperationFailure("User not found")
+    
+        await user.update({"$set": data.dict(exclude_unset=True)})
         return user
