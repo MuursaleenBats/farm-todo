@@ -6,6 +6,7 @@ import { Flex, Spinner } from '@chakra-ui/react';
 import PublicRoute from './components/Auth/PublicRoute';
 import Authenticate from './components/Auth/Authenticate';
 import { Todolist } from './components/Todo/Todolist';
+import { NavBar } from './components/Navbar/NavBar';
 
 function App() {
   return (
@@ -32,7 +33,9 @@ function App() {
               <Routes>
                 <Route path="/login" element= {<PublicRoute><Login /></PublicRoute>}/>
                 <Route path="/register" element= {<PublicRoute><Register /></PublicRoute>}/>
-                <Route path="/" element= {<Authenticate><Todolist/></Authenticate>}/>
+                <Route path="/" element={<NavBar />}>
+                  <Route path="/" element= {<Authenticate><Todolist/></Authenticate>}/>
+                </Route>
                 <Route path="*" element= {<Navigate to="/" />}/>
               </Routes>
             )
