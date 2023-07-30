@@ -16,8 +16,8 @@ app.add_middleware(
     CORSMiddleware,
     allow_origins = settings.FRONTEND_CORS_ORIGIN,
     allow_credentials = True,
-    allowed_methods = ["*"],
-    allowed_headers = ["*"],
+    allow_methods = ["*"],
+    allow_headers = ["*"],
 )
 
 @app.on_event("startup")
