@@ -8,7 +8,9 @@ class Settings:
     ALGORITHM = "HS256"
     ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
     REFRESH_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60*24*7 #7 DAYS
-    BACKEND_CORS_ORIGIN: List[AnyHttpUrl] = []
+    FRONTEND_CORS_ORIGIN: List[AnyHttpUrl] = [
+        "http://localhost:3000"
+    ]
     PROJECT_NAME: str = "TODOLIST"
 
     #Database Settings
