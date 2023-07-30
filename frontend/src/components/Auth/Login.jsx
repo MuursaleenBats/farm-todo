@@ -85,7 +85,7 @@ export const Login = () => {
           <Button
             onClick={() => navigate("/register", { replace: true })}
             width="100%"
-            colorScheme="gray"
+            colorScheme="green"
             variant="outline"
             mt={6}
           >

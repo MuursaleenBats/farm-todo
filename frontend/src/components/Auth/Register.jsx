@@ -1,8 +1,9 @@
 import React from 'react'
-import {Button, Flex, FormControl, FormErrorMessage, Heading, Input, useColorModeValue} from '@chakra-ui/react'
+import {Button, Flex, FormControl, FormErrorMessage, Heading, Input, useColorModeValue, useToast} from '@chakra-ui/react'
 import {useForm} from 'react-hook-form' //useForm for validating all the input fields and give proper validation error
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { ThemeToggler } from '../Themes/ThemeToggler';
+import axiosInstance from '../../services/axios';
 
 function Register() {
     const {
@@ -13,8 +14,27 @@ function Register() {
 
     const navigate = useNavigate()
 
-    const onSubmit = (values) => {
-        console.log(values);
+    const toast = useToast();
+    const location = useLocation();
+
+    const onSubmit = async (values) => {
+        try {
+           await axiosInstance.post('/user/create', values);
+            toast({
+                title: "User Registered",
+                status: 'success',
+                duration: 1500
+            })
+            navigate('/login', {replace: true});
+           
+        } catch (error) {
+            toast({
+                title: `${error.response.data.detail}`,
+                duration: 1500,
+                isClosable: true,
+                status: "error"
+            })
+        }
     }
   return (
     <Flex height="100vh" align="center" justifyContent="center">
@@ -95,7 +115,7 @@ function Register() {
                     mt = {6}
                     mb = {6}
                     variant={'outline'}
-                    colorScheme='green'
+                    colorScheme="green"
                     type = 'submit'
                 >
                     Register
@@ -107,7 +127,7 @@ function Register() {
                     width='100%'
                     mt = {6}
                     variant={'outline'}
-                    colorScheme='green'
+                    colorScheme="green"
                 >
                     Login Instead
                 </Button>

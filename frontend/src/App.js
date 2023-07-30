@@ -5,6 +5,7 @@ import {AuthConsumer, AuthProvider} from './context/JWTAuthContext';
 import { Flex, Spinner } from '@chakra-ui/react';
 import PublicRoute from './components/Auth/PublicRoute';
 import Authenticate from './components/Auth/Authenticate';
+import { Todolist } from './components/Todo/Todolist';
 
 function App() {
   return (
@@ -31,7 +32,7 @@ function App() {
               <Routes>
                 <Route path="/login" element= {<PublicRoute><Login /></PublicRoute>}/>
                 <Route path="/register" element= {<PublicRoute><Register /></PublicRoute>}/>
-                <Route path="/" element= {<Authenticate><h1>Home</h1></Authenticate>}/>
+                <Route path="/" element= {<Authenticate><Todolist/></Authenticate>}/>
                 <Route path="*" element= {<Navigate to="/" />}/>
               </Routes>
             )
