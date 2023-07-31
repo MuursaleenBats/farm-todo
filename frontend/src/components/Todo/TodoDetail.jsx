@@ -2,6 +2,7 @@ import {useEffect, useState, useRef} from 'react'
 import {useNavigate, useParams} from 'react-router-dom'
 import axiosInstance from '../../services/axios';
 import { Button, Center, Container, Flex, Spinner, Text, useColorModeValue } from '@chakra-ui/react';
+import { AddUpdateTodoModal } from './AddUpdateTodoModal';
 export const TodoDetail = () => {
     const [todos, setTodos] = useState({});
     const [loading, setLoading] = useState(true);
@@ -67,7 +68,16 @@ export const TodoDetail = () => {
             <Text bg = 'gray.500' mt = {2} p={2}rounded={'lg'}>
               {todos.description}
             </Text>
-            
+            <AddUpdateTodoModal 
+              my={3}
+              editable = {true}
+              defaultValues={{
+                title: todos.title,
+                description: todos.description,
+                status: todos.status
+              }}
+              onSuccess={fetchTodo}
+            />
         </Container>
       </>
     )
