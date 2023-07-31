@@ -6,7 +6,7 @@ class Settings:
     JWT_SECRET_KEY: str = config("JWT_SECRET_KEY", cast=str)
     JWT_REFRESH_SECRET_KEY: str = config("JWT_REFRESH_SECRET_KEY", cast=str)
     ALGORITHM = "HS256"
-    ACCESS_TOKEN_EXPIRE_MINUTES: int = 15
+    ACCESS_TOKEN_EXPIRE_MINUTES: int = 60
     REFRESH_ACCESS_TOKEN_EXPIRE_MINUTES: int = 60*24*7 #7 DAYS
     FRONTEND_CORS_ORIGIN: List[AnyHttpUrl] = [
         "http://localhost:3000"
