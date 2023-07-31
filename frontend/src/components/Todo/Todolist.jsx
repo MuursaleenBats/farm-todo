@@ -6,10 +6,10 @@ import { TodoCard } from './TodoCard';
 export const Todolist = () => {
     const [todos, setTodos] = useState(false);
     const isMounted = useRef();
-    const [Loading, setLoading] = useState(true);
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        if(isMounted.current) return true;
+        if(isMounted.current) return;
         fetchTodo();
         isMounted.current = true;
     }, []);
@@ -25,9 +25,8 @@ export const Todolist = () => {
     })
     };
 
-  return (
-    <Container mt = {9}>
-        {Loading ? (
+  return <Container mt = {9}>
+        {loading ? (
             <Center mt={6}>
                 <Spinner 
                   thickness='4px'
@@ -46,6 +45,5 @@ export const Todolist = () => {
                 }
             </Box>
         )}
-    </Container>
-  )
+    </Container>;
 }

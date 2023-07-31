@@ -7,6 +7,7 @@ import PublicRoute from './components/Auth/PublicRoute';
 import Authenticate from './components/Auth/Authenticate';
 import { Todolist } from './components/Todo/Todolist';
 import { NavBar } from './components/Navbar/NavBar';
+import { TodoDetail } from './components/Todo/TodoDetail';
 
 function App() {
   return (
@@ -35,6 +36,7 @@ function App() {
                 <Route path="/register" element= {<PublicRoute><Register /></PublicRoute>}/>
                 <Route path="/" element={<NavBar />}>
                   <Route path="/" element= {<Authenticate><Todolist/></Authenticate>}/>
+                  <Route path="/:todoId" element= {<Authenticate><TodoDetail /></Authenticate>}/>
                 </Route>
                 <Route path="*" element= {<Navigate to="/" />}/>
               </Routes>
