@@ -2,6 +2,7 @@ import { Box, Center, Container, Spinner } from '@chakra-ui/react'
 import React, { useEffect, useRef, useState } from 'react'
 import axiosInstance from '../../services/axios';
 import { TodoCard } from './TodoCard';
+import { AddUpdateTodoModal } from './AddUpdateTodoModal';
 
 export const Todolist = () => {
     const [todos, setTodos] = useState(false);
@@ -26,6 +27,10 @@ export const Todolist = () => {
     };
 
   return <Container mt = {9}>
+        <AddUpdateTodoModal
+            onSuccess={fetchTodo} 
+            editable={false}
+        />
         {loading ? (
             <Center mt={6}>
                 <Spinner 
